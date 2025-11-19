@@ -6,7 +6,7 @@
     <meta name="description" content="RoboDuet: Learning a Cooperative Policy for Whole-body Legged Loco-Manipulation">
     <meta name="keywords" content="Mobile Manipulation, Legged Robot, Whole body Control, 6-DoF Tracking">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Beyond Walking: Generalized Frequency-Adaptive Learning for Versatile and Robust Legged Locomotion</title>
+    <title>Beyond Walking: Frequency-Aware Learning for Adaptive and Versatile Legged Locomotion</title>
 
     <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
@@ -32,7 +32,7 @@
         
         <!-- 之后把这个loco换了 -->
         <link rel="icon" href="./LOGO.png">
-    <meta property="og:site_name" content="Beyond Walking: Generalized Frequency-Adaptive Learning for Versatile and Robust Legged Locomotion" />
+    <meta property="og:site_name" content="Beyond Walking: Frequency-Aware Learning for Adaptive and Versatile Legged Locomotion" />
 </head>
 
 
@@ -164,8 +164,8 @@
                         <h1 class="title is-1 publication-title">
                             <!-- <span style="color: rgb(18, 150, 219);font-weight: bolder;">Robo</span><span
                                 style="color: rgb(255, 111, 82);font-weight: bolder;">Duet</span>: Learning a Cooperative Policy for Whole-body Legged Loco-Manipulation</span> -->
-                            </span>Beyond Walking: Generalized Frequency-Adaptive Learning
-                            for Versatile and Robust Legged Locomotion</span>
+                            </span>Beyond Walking: Frequency-Aware Learning <br>
+                            for Adaptive and Versatile Legged Locomotion</span>
                         </h1>
                     </div>
                 </div>
@@ -176,7 +176,7 @@
         <div class="columns is-centered has-text-centered">
         <img src="resources/images/Snapshots.png" alt="" class="no-margin" style="max-width: 100%; display: block; margin: 0 auto;">
         </div>
-        <p style="text-align: center;">Our method make use of Fourier transform in the RL pipeline to train legged controllers with robust and versatile locomotion skills beyond walking.</p>
+        <p style="text-align: center;">Our method make use of Fourier transform in the RL pipeline to train legged controllers with adaptive and versatile locomotion skills beyond walking.</p>
 
         <br>
         <br>
@@ -248,37 +248,34 @@
                     <h2 class="title is-2" style="text-align: center;">Abstract</h2>
                     <div class="content has-text-justified">
                         <p>
-                            &nbsp&nbsp&nbsp&nbsp Legged animals can navigate complex terrains by
-                            deliberately selecting discrete footholds and adjusting kinematic
-                            configuration to proactively adapt to the environment. Similarly,
-                            legged robots can leverage this inherent capability, endowing them
-                            with great potential in real-world robotic applications that require
-                            high mobility. Executing demanding tasks in such challenging
-                            environments requires legged controllers with robust and versatile
-                            locomotion skills far beyond basic walking. However, existing
-                            studies mainly focus on developing simplistic walking controllers
-                            tailored for specific settings, failing to achieve adaptability
-                            and generalization across diverse complex tasks and outdoor
-                            dynamic environments. <br> 
-                            &nbsp&nbsp&nbsp&nbsp For this reason, we propose generalized
-                            frequency-adaptive learning, an integrated learning and control
-                            framework that augments RL-based imitation with Fourier
-                            transform and multi-constraint optimization. Inspired by Fourier
-                            transform, a spectrum convolution module is introduced to capture
-                            the frequency spectrum representation of the environment and
-                            the onboard state. Subsequently, we develop an exteroceptive
-                            Fourier transformer and a proprioceptive Fourier transformer to
-                            adapt the network actions to the surroundings and enhance the
-                            controller bandwidth. <br> 
-                            &nbsp&nbsp&nbsp&nbsp The result is a generalized legged controller
-                            characterized by remarkable robustness and versatility, applicable
-                            to various robots and tasks. We rigorously evaluate the controller
-                            on quadruped, biped, and humanoid robots in diverse challenging
-                            simulated and real-world tasks. It outperforms state-of-the-art
-                            methods in both the simulated dojo and the real-world multi-task
-                            comparison, completing a long-distance campus hike with
-                            human-level agility and winning the remote-control track of
-                            the IEEE RAS Quadruped Robot Challenges at IROS2024.
+                            &nbsp&nbsp&nbsp&nbsp Legged animals traverse complex terrains by
+                            skillfully selecting footholds and adjusting kinematics to
+                            proactively adapt to the environment. Similarly, legged robots
+                            can leverage this inherent capability, unlocking great potential
+                            for real-world robotic applications. However, existing studies
+                            focus on developing expert walking controllers tailored to specific
+                            scenarios, failing to achieve adaptability and generalization
+                            across dynamic outdoor environments and diverse complex
+                            tasks. <br> 
+                            &nbsp&nbsp&nbsp&nbsp For this reason, we propose frequency-aware learning,
+                            a unified learning and control framework for training legged
+                            controllers with adaptive and versatile locomotion skills beyond
+                            walking. Inspired by the Fourier transform, a Fourier online
+                            adaptation module is introduced to capture the frequency-domain
+                            representations of the environment and the onboard state. By
+                            leveraging the spatial-temporal projection between environment
+                            information and control parameters from a frequency-domain
+                            perspective, our framework enables proactive environment
+                            adaptation and implicit action regularization, eliminating the
+                            need for excessive reward engineering and hyperparameter tuning. <br> 
+                            &nbsp&nbsp&nbsp&nbsp The result is a generalized legged controller with highly dynamic
+                            locomotion skills characterized by remarkable adaptability and
+                            versatility. Our approach is extensively benchmarked against
+                            baselines, outperforming state-of-the-art methods in both the
+                            simulated environments and multiple real-world tasks, completing
+                            a long-distance campus hike with great agility, and winning
+                            the remote-control track of the IEEE RAS Quadruped Robot
+                            Challenges at IROS.
                         </p>
                     </div>
                 </div>
@@ -317,28 +314,28 @@
                     <h2 class="title is-2" style="text-align: center;">METHODOLOGY</h2>
                     <div class="content has-text-justified">
                         <p>
-                            &nbsp&nbsp&nbsp&nbsp The goal of this work is to develop a universal control
-                            framework for diverse legged robots to endow them with
-                            robust and versatile locomotion skills to execute various
-                            challenging real-world tasks. <br>
-                            &nbsp&nbsp&nbsp&nbsp To achieve this goal, we first
-                            develop a hybrid learning mechanism, in which the model-free
-                            policy is trained to imitate kinematically and dynamically
-                            consistent reference from the model-based generator through
-                            a barrier-style reward formulation, facilitating efficient policy
-                            iteration and acquisition of versatile locomotion skills. The
-                            control policy is then guided by Fourier Online Adaption (FOA),
-                            a frequency-aware adaptation strategy that dynamically adjusts
-                            the policy to accommodate external environment changes and
-                            internal state variations. The adaptive strategy equips the policy
-                            with proactive robustness to the surrounding environment and
-                            enhanced control bandwidth of the policy output, which are
-                            crucial for real-world applications. Finally, the networks are
-                            optimized through the Constrained Concurrent Teacher-Student
-                            (C2TS) algorithm, which enforces multiple physical constraints
-                            to ensure safe policy performance. By leveraging the privileged
-                            training paradigm, the algorithm achieves robust locomotion
-                            in unstructured environments within limited time budgets.
+                            &nbsp&nbsp&nbsp&nbsp The goal of this work is to develop a unified learning and
+                            control framework to endow legged robots with adaptive and
+                            versatile locomotion skills for challenging real-world tasks. <br>
+                            &nbsp&nbsp&nbsp&nbsp To achieve this goal, we first develop a hybrid learning formulation
+                            in which a model-free controller is trained to imitate motion
+                            reference from the model-based generator through barrier-style
+                            soft constraints, while adhering to task objectives and safety
+                            hard constraints. The control policy is then guided by Fourier
+                            Online Adaptation (FOA), a frequency-aware adaptation
+                            strategy that dynamically adjusts the policy to accommodate
+                            external environment changes and internal state variations.
+                            The frequency-aware strategy equips the policy with proactive
+                            adaptation to the surrounding environment and enhanced control
+                            bandwidth of the policy output, which are crucial for real-world
+                            applications. Finally, the networks are optimized through the
+                            Constrained Concurrent Teacher-Student (C2TS) algorithm,
+                            which enforces multiple physical constraints to ensure hardware
+                            stability. By leveraging the privileged training paradigm,
+                            the algorithm achieves superior sim-to-real performance in
+                            unstructured environments with only proprioception.
+                            
+                            
                         </p>
                         <div style="text-align: center;">
                             <figure style="display: inline-block; max-width: 100%;">
@@ -351,6 +348,16 @@
                     
                 </div>
             </div>
+
+            <div class="columns is-centered ">
+              <div class="column is-full-width is-centered has-text-centered">
+                  <iframe src="https://www.youtube.com/embed/Me23ewXHjSw?si=Ajg3pYnXviU3wzi6" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+                  title="WBC-1"
+                  style="width: 70%; aspect-ratio: 16/9;"></iframe>
+                  <p></p>
+              </div>
+          </div>
+
         </div>
     </section>
 
