@@ -248,34 +248,32 @@
                     <h2 class="title is-2" style="text-align: center;">Abstract</h2>
                     <div class="content has-text-justified">
                         <p>
-                            &nbsp&nbsp&nbsp&nbsp Legged animals traverse complex terrains by
-                            skillfully selecting footholds and adjusting kinematics to
-                            proactively adapt to the environment. Similarly, legged robots
-                            can leverage this inherent capability, unlocking great potential
-                            for real-world robotic applications. However, existing studies
-                            focus on developing expert walking controllers tailored to specific
-                            scenarios, failing to achieve adaptability and generalization
-                            across dynamic outdoor environments and diverse complex
-                            tasks. <br> 
-                            &nbsp&nbsp&nbsp&nbsp For this reason, we propose frequency-aware learning,
-                            a unified learning and control framework for training legged
-                            controllers with adaptive and versatile locomotion skills beyond
-                            walking. Inspired by the Fourier transform, a Fourier online
-                            adaptation module is introduced to capture the frequency-domain
-                            representations of the environment and the onboard state. By
-                            leveraging the spatial-temporal projection between environment
-                            information and control parameters from a frequency-domain
-                            perspective, our framework enables proactive environment
-                            adaptation and implicit action regularization, eliminating the
-                            need for excessive reward engineering and hyperparameter tuning. <br> 
-                            &nbsp&nbsp&nbsp&nbsp The result is a generalized legged controller with highly dynamic
-                            locomotion skills characterized by remarkable adaptability and
-                            versatility. Our approach is extensively benchmarked against
-                            baselines, outperforming state-of-the-art methods in both the
-                            simulated environments and multiple real-world tasks, completing
-                            a long-distance campus hike with great agility, and winning
-                            the remote-control track of the IEEE RAS Quadruped Robot
-                            Challenges at IROS.
+                            &nbsp&nbsp&nbsp&nbsp Legged animals traverse unstructured terrains by
+                            skillfully selecting footholds and adjusting limb kinematics to
+                            adapt to environmental variations. Similarly, legged robots can
+                            leverage this inherent capability, unlocking great potential for
+                            real-world robotic applications. However, existing studies mainly
+                            focus on designing expert walking controllers tailored to specific
+                            scenarios, failing to achieve adaptability and generalization across
+                            dynamic outdoor environments and diverse complex tasks. <br> 
+                            &nbsp&nbsp&nbsp&nbsp For this reason, we propose frequency-aware learning, 
+                            a unified learning
+                            and control framework for training legged controllers with
+                            adaptive and versatile locomotion skills beyond walking. Motivated
+                            by the Fourier transform, a Fourier online adaptation module
+                            is introduced to extract frequency-domain features from both
+                            the environment perception and the onboard state. By leveraging
+                            a spatial-temporal projection between environment information
+                            and motion parameters, our framework enables robust terrain
+                            adaptation and effective action regularization.  <br> 
+                            &nbsp&nbsp&nbsp&nbsp The resulting  controller exhibits strong generalization capacity and highly
+                            dynamic locomotion performance with exceptional adaptability
+                            and versatility. Extensive benchmarking against state-of-the-art
+                            baseline methods validates the superiority of our approach in
+                            both simulation and multiple real-world tasks. Notably, our
+                            framework enables agile long-distance campus hiking and has
+                            won the remote-control track of the IEEE RAS Quadruped Robot
+                            Challenges at IROS.  <br> 
                         </p>
                     </div>
                 </div>
@@ -311,36 +309,16 @@
             <div class="columns is-centered has-text-centered">
                 <div class="column has-text-centered is-three-quarters">
                     <!--       <div class="column is-two-thirds"> -->
-                    <h2 class="title is-2" style="text-align: center;">METHODOLOGY</h2>
+                    <h2 class="title is-2" style="text-align: center;">Framework Overview</h2>
                     <div class="content has-text-justified">
                         <p>
-                            &nbsp&nbsp&nbsp&nbsp The goal of this work is to develop a unified learning and
-                            control framework to endow legged robots with adaptive and
-                            versatile locomotion skills for challenging real-world tasks. <br>
-                            &nbsp&nbsp&nbsp&nbsp To achieve this goal, we first develop a hybrid learning formulation
-                            in which a model-free controller is trained to imitate motion
-                            reference from the model-based generator through barrier-style
-                            soft constraints, while adhering to task objectives and safety
-                            hard constraints. The control policy is then guided by Fourier
-                            Online Adaptation (FOA), a frequency-aware adaptation
-                            strategy that dynamically adjusts the policy to accommodate
-                            external environment changes and internal state variations.
-                            The frequency-aware strategy equips the policy with proactive
-                            adaptation to the surrounding environment and enhanced control
-                            bandwidth of the policy output, which are crucial for real-world
-                            applications. Finally, the networks are optimized through the
-                            Constrained Concurrent Teacher-Student (C2TS) algorithm,
-                            which enforces multiple physical constraints to ensure hardware
-                            stability. By leveraging the privileged training paradigm,
-                            the algorithm achieves superior sim-to-real performance in
-                            unstructured environments with only proprioception.
                             
-                            
+             
                         </p>
                         <div style="text-align: center;">
                             <figure style="display: inline-block; max-width: 100%;">
                                 <img src="resources/images/framework.png" alt="Pipeline Image" style="max-width: 100%;">
-                                <figcaption style="font-weight: bold;">An overview of Generalized Frequency-Adaptive Learning
+                                <figcaption style="font-weight: bold;">
                                 </figcaption>
                             </figure>
                         </div>
@@ -374,9 +352,6 @@
                 <div class="column has-text-centered is-three-quarters">
                     <div class="content has-text-justified">
                         <p>
-                            Our controller is trained in IsaacGym simulator with massively parallelism. The training process takes about 1.5 hours of wall-clock time on an NVIDIA RTX 3090,
-                            Then, the trained controller is directly deployed on the real hardware without any fine-tuning. The locomotion control policy runs
-                            at 50Hz on hardware, and the low-level joint PD controller runs at 1kHz in parallel.
                         </p>
                     </div>
                 </div>
@@ -405,9 +380,7 @@
             <div class="columns is-centered has-text-centered">
                 <div class="column has-text-centered is-three-quarters">
                     <div class="content has-text-justified">
-                        <p>
-                            The proposed frequency-adaptive controller undergoes
-                            extensive testing in diverse harsh terrains to evaluate its locomotion performance.                        
+                        <p>                       
                         </p>
                     </div>
                 </div>
@@ -417,7 +390,7 @@
                 <div class="column is-full-width is-centered has-text-centered">
                     <iframe src="https://www.youtube.com/embed/Qehdwj2nOZg?si=Z9kVgt-fOsg40byj" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
                     style="width: 100%; aspect-ratio: 16/9;"></iframe>
-                    <p >Equipped with our controller, the quadruped robot Unitree Go2 wins  the first place in the remote control track in the QRC at IROS 2024.</p>
+                    <p >Equipped with our controller, the quadruped robot Unitree Go2 wins  the first place in the remote control track in the QRC at IROS.</p>
                 </div>
                 <div class="column is-full-width is-centered has-text-centered">
                     <iframe src="https://www.youtube.com/embed/hC19hQWopZk?si=3nlUyLas-YRUXLXO" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
@@ -434,7 +407,6 @@
                 <div class="column has-text-centered is-three-quarters">
                     <div class="content has-text-justified">
                         <p>
-                            We showcase the versatility of our controller by training quadruped robots to perform a wide range of locomotion skills, such as multi-gait switching, humanoid walk, handstand, crawl and posture control.
                         </p>
                     </div>
                 </div>
@@ -468,12 +440,11 @@
             <div class="exp-margin"></div>
 
             <!-- Mobile Manipulation -->
-            <h3 class="title is-3" style="text-align: center;">Hardware Safety</h3>
+            <h3 class="title is-3" style="text-align: center;">Hardware Stability</h3>
             <div class="columns is-centered has-text-centered">
                 <div class="column has-text-centered is-three-quarters">
                     <div class="content has-text-justified">
                         <p>
-                            Reardless of platform and task variations, our controller is capable of satisfying safety constraints and ensuring hardware stability when deployed in real-world environments.                   
                         </p>
                     </div>
                 </div>
@@ -499,11 +470,7 @@
                 <div class="column has-text-centered is-three-quarters">
                     <div class="content has-text-justified">
                         <p>
-                            To demonstate the effectiveness of Fourier online adaptation, we analyze the acquired frequency-domain features of EFT (Exteroceptive Fourier Transformer), and then study how PFT (Proprioceptive Fourier Transformer)  enhances the control bandwidth.
-                            <br>
-                            The results shows that the EFT is capable of capturing the key features of different terrains and providing sufficient information for the controller to achieve proactive adaptiveness during legged locomotion.
-                            Through comparison, we find that  the PFT can effectively enhance the
-                            control bandwidth of the controller, empowering the robot to achieve smoother and more stable locomotion in complex environments.                        </p>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -528,7 +495,6 @@
                 <div class="column has-text-centered is-three-quarters">
                     <div class="content has-text-justified">
                         <p>
-                            Rather than limited to a specific robot, the proposed method is capable of generalizing to diverse legged platforms, including quadruped, biped and humanoid robots.
                         </p>
                     </div>
                 </div>
@@ -558,20 +524,64 @@
         </div>
     </section>
 
-    <!-- <section class="section" id="BibTeX">
-        <div class="container content">
-            <h2 class="titile">BibTeX</h2>
-            <pre><code>@misc{pan2024roboduetwholebodyleggedlocomanipulation,
-                title={RoboDuet: Learning a Cooperative Policy for Whole-body Legged Loco-Manipulation}, 
-                author={Guoping Pan and Qingwei Ben and Zhecheng Yuan and Guangqi Jiang and Yandong Ji and Shoujie Li and Jiangmiao Pang and Houde Liu and Huazhe Xu},
-                year={2024},
-                eprint={2403.17367},
-                archivePrefix={arXiv},
-                primaryClass={cs.RO},
-                url={https://arxiv.org/abs/2403.17367}, 
-          }</code></pre>
-        </div>
-    </section> -->
+    <section class="section">
+      <div class="container">
+          <!-- Abstract. -->
+          <div class="columns is-centered has-text-centered">
+              <div class="column has-text-centered is-three-quarters">
+                  <!--       <div class="column is-two-thirds"> -->
+                  <h2 class="title is-2" style="text-align: center;">Appendix</h2>
+                  <div class="content has-text-justified">
+                      <p>                          
+                      </p>
+
+                      <div style="text-align: center;">
+                          <figure style="display: inline-block; max-width:100%;">
+                              <img src="resources/images/PARAM1.jpg" alt="Pipeline Image" style="max-width:100%;">
+                              <!-- 下面这行就是图片下方的文字，把中文替换成你想要的内容 -->
+                              <figcaption style="font-weight: bold;">
+                                  Training Hyper-Parameters
+                              </figcaption>
+
+                          </figure>
+                      </div>
+
+                      <p>                
+                      </p>
+                      <p>                
+                      </p>          
+                      
+                      <div style="text-align: center;">
+                        <figure style="display: inline-block; max-width: 100%;">
+                            <img src="resources/images/PARAM2.jpg" alt="Pipeline Image" style="max-width: 100%;">
+                            <figcaption style="font-weight: bold;">
+                                Barrier threshold, barrier coefficient, adaptation coefficient, reference prior settings for different tasks
+                            </figcaption>
+                        </figure>
+                    </div>
+
+                    <p>                
+                    </p>
+                    <p>                
+                    </p> 
+
+                    <div style="text-align: center;">
+                      <figure style="display: inline-block; max-width: 100%;">
+                          <img src="resources/images/PARAM3.jpg" alt="Pipeline Image" style="max-width: 100%;">
+                          <figcaption style="font-weight: bold;">
+                            Domain Randomization Parameters
+                          </figcaption>
+                      </figure>
+
+                  </div>
+                  </div>
+                  
+              </div>
+          </div>
+
+      </div>
+  </section>
+
 
     <footer class="footer">
         <div class="container">
